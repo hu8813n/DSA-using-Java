@@ -9,7 +9,7 @@ public class SkipString {
         }
 
         if(up.startsWith("apple")){
-           return up.charAt(0) + skip( up.substring(5));
+           return skip( up.substring(5));
         }else{
            return up.charAt(0) + skip( up.substring(1));
         }
