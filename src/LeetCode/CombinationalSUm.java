@@ -10,18 +10,20 @@ public class CombinationalSUm {
         return ans;
     }
     static void helper( int[] candidates , int target , int ind , List<List<Integer>> outer , List<Integer> inn){
-        if ( ind == candidates.length){
-            if( target == 0){
-                outer.add(new ArrayList<>(inn));
-            }
+
+        if( target == 0){
+            outer.add(new ArrayList<>(inn));
             return;
         }
-        if(candidates[ind] <= target){
-            inn.add(candidates[ind]);
-            helper(candidates, target-candidates[ind] , ind , outer , inn );
-            inn.remove(inn.size()-1);
+
+        if ( ind < candidates.length) {
+            if (candidates[ind] <= target) {
+                inn.add(candidates[ind]);
+                helper(candidates, target - candidates[ind], ind, outer, inn);
+                inn.remove(inn.size() - 1);
+            }
+            helper(candidates, target, ind + 1, outer, inn);
         }
-        helper(candidates , target , ind+1, outer, inn);
     }
 
     public static void main(String[] args) {
