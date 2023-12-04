@@ -12,7 +12,7 @@ public class PhoneNumber {
             return list;
 
         }
-        int digit = (int)up.charAt(0) - '0'; //this will convert this into integer
+        int digit = up.charAt(0) - '0'; //this will convert this into integer
          List<String> ans = new ArrayList<>();
         for(int i = (digit-1)*3; i < digit*3; i++) {
 
