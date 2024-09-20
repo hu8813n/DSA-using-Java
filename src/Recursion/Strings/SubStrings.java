@@ -27,7 +27,8 @@ public class SubStrings {
 
         //Answer from below calls --------------------------
 
-        ArrayList<String> left = sub(p+ch, up.substring(1));
+
+         ArrayList<String> left = sub(p+ch, up.substring(1));
         ArrayList<String> right = sub(p, up.substring(1  ));
         left.addAll(right);
         return left;
@@ -38,7 +39,21 @@ public class SubStrings {
 
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
-        System.out.println(substrings("" ,"abc" , list));
+//        System.out.println(substrings("" ,"abc" , list));
         System.out.println(sub("", "abc"));
+        System.out.println(subsAscii("", "abc",  list));
+    }
+
+    static List<String> subsAscii(String p, String up,  List<String> list){
+        if(up.isEmpty()){
+            list.add(p);
+            return list;
+        }
+        char ch = up.charAt(0);
+        int asciI = ch+ 0;
+
+         subsAscii(p+asciI, up.substring(1), list);
+         subsAscii(p, up.substring(1), list);
+         return list;
     }
 }
