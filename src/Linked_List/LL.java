@@ -1,5 +1,7 @@
 package Linked_List;
 
+
+
 public class LL {
 
     private Node head;
@@ -139,10 +141,126 @@ public class LL {
         }
         System.out.println("END");
     }
-
     public void size(){
         System.out.println(size);
     }
+
+
+    public void bubbleSort(){
+        bubbleSort(size-1, 0);
+        }
+
+    private void bubbleSort(int row , int col){
+
+        if(row == 0){
+            return;
+        }
+
+        if(col < row){
+            Node first = get(col);
+            Node sec = get(col+1);
+            if(first.value > sec.value){
+                if(first == head){
+                    first.next = sec.next;
+                    sec.next = first;
+                    head = sec;
+                } else if (sec == tail) {
+                    Node prev = get(size-3);
+                    prev.next = sec;
+                    tail = first;
+                    sec.next = tail;
+                    tail.next = null;
+                }else{
+                    Node prev = get(col - 1);
+                    prev.next = sec;
+                    first.next = sec.next;
+                    sec.next = first;
+
+                }
+            }
+            bubbleSort(row , col+1);
+        }else{
+            bubbleSort(row-1 , 0);
+        }
+
+
+
+    }
+
+
+// Recursion Reverse
+
+    private void reverse(Node node){
+        if(node == tail){
+            head = tail;
+            return;
+        }
+        reverse(node.next);
+        tail.next = node;
+        tail = node;
+        tail.next = null;
+    }
+    public void reverse(){
+        if(size < 2){
+            return ;
+        }else{
+            Node prev = null;
+            Node present = head;
+            Node next1 = present.next;
+            while(present != null){
+                present.next = prev;
+                prev = present;
+                present = next1;
+                if(present != null){
+                    next1 = next1.next;
+                }
+
+            }
+            head = prev;
+
+        }
+    }
+
+
+    //Delete all values
+    public void deleteAll(int val){
+        while(head!= null && head.value == val){
+            head = head.next;
+        }
+        if(head == null){
+            return;
+        }
+        Node current = head;
+        while(current.next!= null){
+            if(current.next.value == val){
+                current.next = current.next.next;
+            } else{
+                current = current.next;
+            }
+        }
+
+    }
+
+    // keep one and delte other duplicates must be sorted
+
+
+    public  void deleteDuplicates(){
+        Node current = head;
+        while(current != null && current.next != null){
+            if(current.value == current.next.value){
+                current.next = current.next.next;
+            }else{
+                current = current.next;
+            }
+        }
+    }
+
+
+
+
+
+
+
     private class Node{
         private int value;
         private Node next;
